@@ -6,24 +6,24 @@
     </page-title>
     <interior-container>
       <div v-if="getInterior">
-        <img :src="getInterior.image.default" alt="">
+        <img :src="getInterior.image.default" :alt="getInterior.name">
       </div>
       <div class="scrollbar">
         <interior-item
-          v-for="(item, key) in items"
+          v-for="(interior, key) in interiorItems"
           :key="key"
-          @click="activeInterior(item.number)"
-          :active="item.active"
+          @click="activeInterior(interior.number)"
+          :active="interior.active"
         >
           <div>
-            <img :src="item.image.default" :alt="item.name">
+            <img :src="interior.image.default" :alt="interior.name">
           </div>
           <div>
-            <img :src="item.shape.icon" :alt="item.shape.name">
-            <span>{{ item.shape.name }}</span>
+            <img :src="interior.shape.icon" :alt="interior.shape.name">
+            <span>{{ interior.shape.name }}</span>
           </div>
-          <div v-if="!item.active"></div>
-          <p>{{ item.name }}</p>
+          <div v-if="!interior.active"></div>
+          <p>{{ interior.name }}</p>
         </interior-item>
       </div>
     </interior-container>
@@ -149,14 +149,14 @@ export default {
     BButton,
   },
   setup() {
-    const items = ref([]);
+    const interiorItems = ref([]);
     const wrapper = ref(null);
     const { setInterior, setInteriors } = useMutations();
     const { getInterior } = useGetters();
 
     interiors().then(({ data }) => {
       setInteriors(data);
-      items.value = data.map((item, index) => ({
+      interiorItems.value = data.map((item, index) => ({
         ...item,
         active: !index,
       }));
@@ -164,7 +164,7 @@ export default {
 
     const activeInterior = (idx) => {
       setInterior(idx);
-      items.value = items.value.map((item) => ({
+      interiorItems.value = interiorItems.value.map((item) => ({
         ...item,
         active: item.number === idx,
       }));
@@ -175,7 +175,7 @@ export default {
     };
 
     return {
-      items,
+      interiorItems,
       wrapper,
       activeInterior,
       selectInterior,
