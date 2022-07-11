@@ -1,18 +1,19 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <wrapper>
+    <choose-studio-type />
+    <choose-interior-type />
+  </wrapper>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import styled from 'vue3-styled-components';
+import ChooseStudioType from '@/components/ChooseStudioType.vue';
+import ChooseInteriorType from '@/components/ChooseInteriorType.vue';
+
+const Wrapper = styled.div`
+`;
 
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld,
-  },
+  components: { Wrapper, ChooseStudioType, ChooseInteriorType },
 };
 </script>
