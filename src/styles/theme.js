@@ -9,8 +9,13 @@ const colors = {
   darkblue: '#1428a0',
 };
 
+const border = {
+  active: '#00b3e3',
+};
+
 const theme = {
   colors,
+  border,
 };
 
 export default theme;
