@@ -12,6 +12,7 @@ export default createStore({
     fridge: {
       bodyCode: {},
       modelCode: {},
+      info: {},
     },
   },
   getters: {
@@ -19,6 +20,17 @@ export default createStore({
       const [data] = state.interiors.filter((item) => item.number === state.interior);
 
       return data;
+    },
+    getAvailableFridgeList(state) {
+      return Object.keys(state.fridge.modelCode).flatMap((key) => {
+        const { twotone, monotone, panelready } = state.fridge.modelCode[key];
+        const [top, bottom] = Object.values(panelready);
+        const count = twotone.length + monotone.length + top.length + bottom.length;
+
+        if (!count) return [];
+
+        return state.fridge.info[key];
+      });
     },
   },
   mutations: {
@@ -34,19 +46,21 @@ export default createStore({
     setPreviewState(state, preview) {
       state.preview = preview;
     },
-    setFridgeData(state, { fridgeBodyCode, fridgeModelCode }) {
+    setFridgeData(state, { fridgeBodyCode, fridgeModelCode, fridgeInfo }) {
       state.fridge.bodyCode = fridgeBodyCode;
       state.fridge.modelCode = fridgeModelCode;
+      state.fridge.info = fridgeInfo;
     },
   },
   actions: {
     async fetchFridgeData({ commit }) {
-      const [fridgeBodyCode, fridgeModelCode] = await Promise.all([
+      const [fridgeBodyCode, fridgeModelCode, fridgeInfo] = await Promise.all([
         bespoke.getFridgeBodyCode(),
         bespoke.getFridgeModelCode(),
+        bespoke.getFridgeInfo(),
       ]);
 
-      commit('setFridgeData', { fridgeBodyCode, fridgeModelCode });
+      commit('setFridgeData', { fridgeBodyCode, fridgeModelCode, fridgeInfo });
     },
   },
 });

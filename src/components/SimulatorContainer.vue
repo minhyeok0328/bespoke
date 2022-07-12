@@ -59,10 +59,11 @@ const Wrapper = styled.div`
 export default {
   components: { Wrapper, FloatButton },
   setup() {
-    const { getInterior } = useGetters();
+    const { getInterior, getAvailableFridgeList } = useGetters();
 
     return {
       getInterior,
+      getAvailableFridgeList,
     };
   },
 };

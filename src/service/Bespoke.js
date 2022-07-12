@@ -22,4 +22,10 @@ export default class Bespoke {
 
     return fridgeModelCode;
   }
+
+  async getFridgeInfo() {
+    const fridgeInfo = await this.http.get('/fridgeInfo.json');
+
+    return fridgeInfo;
+  }
 }
