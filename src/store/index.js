@@ -22,7 +22,9 @@ export default createStore({
       return data;
     },
     getAvailableFridgeList(state) {
-      return Object.keys(state.fridge.modelCode).flatMap((key) => {
+      const items = {};
+
+      Object.keys(state.fridge.modelCode).flatMap((key) => {
         const { twotone, monotone, panelready } = state.fridge.modelCode[key];
         const [top, bottom] = Object.values(panelready);
         const count = twotone.length + monotone.length + top.length + bottom.length;
@@ -35,7 +37,13 @@ export default createStore({
         if (a.doorLength > b.doorLength) return -1;
 
         return 0;
+      }).forEach((item) => {
+        if (!items[item.doorLength]) items[item.doorLength] = [];
+
+        items[item.doorLength].push(item);
       });
+
+      return Object.values(items).reverse();
     },
   },
   mutations: {

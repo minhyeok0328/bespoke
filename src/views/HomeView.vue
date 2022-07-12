@@ -8,12 +8,16 @@
     />
     <b-step-content>
       <b-title>REF</b-title>
-      <b-product-list>
+      <b-product-list
+        v-for="(list, key) in getAvailableFridgeList"
+        :key="key"
+      >
         <b-product
-          v-for="(fridge, key) in getAvailableFridgeList"
+          v-for="(fridge, key) in list"
           :key="key"
           :icon="fridge.icon"
           :title="fridge.title"
+          :subtitle="fridge.subtitle"
           :is-fridge="true"
         />
       </b-product-list>
