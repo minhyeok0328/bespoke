@@ -7,7 +7,9 @@
         next-text="Color"
         :step="['01', '02']"
       />
-      <b-step-content></b-step-content>
+      <b-step-content>
+        <b-title>REF</b-title>
+      </b-step-content>
     </b-step>
   </wrapper>
 </template>
@@ -17,6 +19,7 @@ import styled from 'vue3-styled-components';
 import BStep from '@/components/BStep.vue';
 import BStepHeader from '@/components/BStepHeader.vue';
 import BStepContent from '@/components/BStepContent.vue';
+import BTitle from '@/components/BTitle.vue';
 
 const Wrapper = styled.div`
 
@@ -28,6 +31,7 @@ export default {
     BStep,
     BStepHeader,
     BStepContent,
+    BTitle,
   },
 };
 </script>

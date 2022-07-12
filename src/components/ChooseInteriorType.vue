@@ -36,7 +36,7 @@ import { vw } from '@/styles/mixin';
 import { ref } from 'vue';
 import { useGetters, useMutations } from '@/store/helper';
 import styled from 'vue3-styled-components';
-import interiors from '@/api/interiors';
+import Bespoke from '@/service/Bespoke';
 import BButton from '@/components/BButton.vue';
 
 const Wrapper = styled.div`
@@ -149,12 +149,13 @@ export default {
     BButton,
   },
   setup() {
+    const bespoke = new Bespoke();
     const interiorItems = ref([]);
     const wrapper = ref(null);
     const { setInterior, setInteriors } = useMutations();
     const { getInterior } = useGetters();
 
-    interiors().then(({ data }) => {
+    bespoke.getInterior().then((data) => {
       setInteriors(data);
       interiorItems.value = data.map((item, index) => ({
         ...item,

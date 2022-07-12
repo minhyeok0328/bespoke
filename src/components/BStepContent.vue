@@ -22,7 +22,6 @@ const Wrapper = styled.div`
       ${vw('padding', [10, 60])}
       height: 100%;
       overflow-y: auto;
-      font-size: 95px;
     }
     :nth-child(2) {
       position: absolute;
