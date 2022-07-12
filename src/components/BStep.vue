@@ -1,15 +1,16 @@
 <template>
-  <wrapper>
+  <wrapper :open="step">
     <slot></slot>
-    <button></button>
+    <button @click="toggleStep"></button>
   </wrapper>
 </template>
 
 <script>
+import { useMutations, useState } from '@/store/helper';
 import { vw } from '@/styles/mixin';
 import styled from 'vue3-styled-components';
 
-const Wrapper = styled.div`
+const Wrapper = styled('div', { open: Boolean })`
   position: absolute;
   right: 0;
   top: 0;
@@ -19,10 +20,13 @@ const Wrapper = styled.div`
   transition: right 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   background-color: ${({ theme }) => theme.colors.darkgray};
   ${vw('padding-top', 40)}
+  ${({ open }) => !open && `
+    ${vw('right', -560)}
+  `}
   > button {
     ${vw('width', 14)}
     ${vw('height', 25)}
-    background: url(/images/toggle-button.svg);
+    background: url(/images/toggle-button.svg) center / cover;
     border: none;
     cursor: pointer;
     position: absolute;
@@ -34,5 +38,18 @@ const Wrapper = styled.div`
 
 export default {
   components: { Wrapper },
+  setup() {
+    const { openStep } = useMutations();
+    const { step } = useState();
+
+    const toggleStep = () => {
+      openStep(!step.value);
+    };
+
+    return {
+      step,
+      toggleStep,
+    };
+  },
 };
 </script>

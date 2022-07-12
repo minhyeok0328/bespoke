@@ -4,6 +4,7 @@ export default createStore({
   state: {
     interior: 1,
     interiors: [],
+    step: true,
   },
   getters: {
     getInterior(state) {
@@ -18,6 +19,9 @@ export default createStore({
     },
     setInteriors(state, items) {
       state.interiors = items;
+    },
+    openStep(state, step) {
+      state.step = step;
     },
   },
   actions: {
