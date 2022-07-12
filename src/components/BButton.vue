@@ -16,6 +16,7 @@ const Wrapper = styled.button`
   font-family: 'SamsungOne';
   font-weight: bold;
   cursor: pointer;
+  border: none;
   ${({ theme }) => `
     background-color: ${theme.colors.darkblue};
     color: ${theme.colors.white};

@@ -16,7 +16,7 @@ const Wrapper = styled('div', { open: Boolean })`
   top: 0;
   ${vw('width', 610)}
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
   transition: right 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   background-color: ${({ theme }) => theme.colors.darkgray};
   ${vw('padding-top', 40)}
