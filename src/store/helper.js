@@ -26,4 +26,20 @@ const useMutations = () => {
   );
 };
 
-export { useState, useGetters, useMutations };
+const useActions = () => {
+  const store = useStore();
+  return Object.fromEntries(
+    // eslint-disable-next-line no-underscore-dangle
+    Object.keys(store._actions).map((actions) => [
+      actions,
+      (value) => store.dispatch(actions, value),
+    ]),
+  );
+};
+
+export {
+  useState,
+  useGetters,
+  useMutations,
+  useActions,
+};
