@@ -1,19 +1,26 @@
 <template>
   <wrapper>
-    <choose-studio-type />
-    <choose-interior-type />
+    <b-step>
+      <b-step-header
+        title="Choose Your Product"
+        prev-text="Interior Style"
+        next-text="Color"
+        :step="['01', '02']"
+      />
+    </b-step>
   </wrapper>
 </template>
 
 <script>
 import styled from 'vue3-styled-components';
-import ChooseStudioType from '@/components/ChooseStudioType.vue';
-import ChooseInteriorType from '@/components/ChooseInteriorType.vue';
+import BStep from '@/components/BStep.vue';
+import BStepHeader from '@/components/BStepHeader.vue';
 
 const Wrapper = styled.div`
+
 `;
 
 export default {
-  components: { Wrapper, ChooseStudioType, ChooseInteriorType },
+  components: { Wrapper, BStep, BStepHeader },
 };
 </script>

@@ -9,12 +9,12 @@
       />
       <float-button
         icon="/images/floating-icon-interior-crop.png"
-        :iconWidth="32"
+        :icon-width="32"
         text="INTERIOR"
       />
       <float-button
         icon="/images/floating-icon-refrigerator.png"
-        :iconWidth="26"
+        :icon-width="26"
         text="PRODUCT"
       />
       <float-button
