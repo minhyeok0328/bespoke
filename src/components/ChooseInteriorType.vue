@@ -34,7 +34,7 @@
 <script>
 import { vw } from '@/styles/mixin';
 import { ref } from 'vue';
-import { useGetters, useMutations } from '@/store/helper';
+import { useActions, useGetters, useMutations } from '@/store/helper';
 import styled from 'vue3-styled-components';
 import Bespoke from '@/service/Bespoke';
 import BButton from '@/components/BButton.vue';
@@ -154,6 +154,7 @@ export default {
     const wrapper = ref(null);
     const { setInterior, setInteriors } = useMutations();
     const { getInterior } = useGetters();
+    const { fetchFridgeData } = useActions();
 
     bespoke.getInterior().then((data) => {
       setInteriors(data);
@@ -171,7 +172,9 @@ export default {
       }));
     };
 
-    const selectInterior = () => {
+    const selectInterior = async () => {
+      await fetchFridgeData();
+
       wrapper.value.$el.remove();
     };
 

@@ -1,4 +1,7 @@
 import { createStore } from 'vuex';
+import Bespoke from '@/service/Bespoke';
+
+const bespoke = new Bespoke();
 
 export default createStore({
   state: {
@@ -6,6 +9,10 @@ export default createStore({
     interiors: [],
     step: true,
     preview: false,
+    fridge: {
+      bodyCode: {},
+      modelCode: {},
+    },
   },
   getters: {
     getInterior(state) {
@@ -27,7 +34,19 @@ export default createStore({
     setPreviewState(state, preview) {
       state.preview = preview;
     },
+    setFridgeData(state, { fridgeBodyCode, fridgeModelCode }) {
+      state.fridge.bodyCode = fridgeBodyCode;
+      state.fridge.modelCode = fridgeModelCode;
+    },
   },
   actions: {
+    async fetchFridgeData({ commit }) {
+      const [fridgeBodyCode, fridgeModelCode] = await Promise.all([
+        bespoke.getFridgeBodyCode(),
+        bespoke.getFridgeModelCode(),
+      ]);
+
+      commit('setFridgeData', { fridgeBodyCode, fridgeModelCode });
+    },
   },
 });

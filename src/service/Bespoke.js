@@ -10,4 +10,16 @@ export default class Bespoke {
 
     return interiorItems;
   }
+
+  async getFridgeBodyCode() {
+    const fridgeBodyCode = await this.http.get('/bodycode.json');
+
+    return fridgeBodyCode;
+  }
+
+  async getFridgeModelCode() {
+    const fridgeModelCode = await this.http.get('/models.json');
+
+    return fridgeModelCode;
+  }
 }
