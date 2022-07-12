@@ -3,7 +3,9 @@
     <choose-studio-type />
     <choose-interior-type />
     <simulator-container />
-    <router-view/>
+    <b-step>
+      <router-view/>
+    </b-step>
   </theme-provider>
 </template>
 
@@ -14,6 +16,7 @@ import SimulatorContainer from '@/components/SimulatorContainer.vue';
 import ChooseStudioType from '@/components/ChooseStudioType.vue';
 import ChooseInteriorType from '@/components/ChooseInteriorType.vue';
 import '@/styles/global';
+import BStep from './components/BStep.vue';
 
 export default {
   components: {
@@ -21,6 +24,7 @@ export default {
     SimulatorContainer,
     ChooseStudioType,
     ChooseInteriorType,
+    BStep,
   },
   setup() {
     return {
