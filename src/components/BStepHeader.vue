@@ -1,11 +1,15 @@
 <template>
   <wrapper>
-    <button @click="prevCallback">{{ prevText }}</button>
+    <button v-if="prevText" @click="prevCallback">{{ prevText }}</button>
     <h1>
       {{ title }}
       <p>{{ step[0] }} / <span>{{ step[1] }}</span></p>
     </h1>
-    <button :disabled="nextDisabled" @click="nextCallback">{{ nextText }}</button>
+    <button
+      v-if="nextText"
+      :disabled="nextDisabled"
+      @click="nextCallback"
+    >{{ nextText }}</button>
   </wrapper>
 </template>
 

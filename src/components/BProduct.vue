@@ -41,6 +41,7 @@ const Wrapper = styled('label', { isFridge: Boolean })`
   text-align: center;
   > p {
     ${vw('margin-top', 20)}
+    ${vw('padding', [0, 3])}
   }
 `;
 
