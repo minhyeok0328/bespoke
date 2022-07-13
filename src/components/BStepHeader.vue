@@ -1,11 +1,11 @@
 <template>
   <wrapper>
-    <div @click="prevCallback">{{ prevText }}</div>
+    <button @click="prevCallback">{{ prevText }}</button>
     <h1>
       {{ title }}
       <p>{{ step[0] }} / <span>{{ step[1] }}</span></p>
     </h1>
-    <div @click="nextCallback">{{ nextText }}</div>
+    <button :disabled="nextDisabled" @click="nextCallback">{{ nextText }}</button>
   </wrapper>
 </template>
 
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
       }
     }
   }
-  > div {
+  > button {
     :nth-child(1),
     :nth-child(3) {
       position: relative;
@@ -60,6 +60,9 @@ const Wrapper = styled.div`
       }
     }
     :nth-child(3) {
+      :disabled {
+        opacity: 0.5;
+      }
       :before {
         background: url(/images/icon-arw-right.svg) center / cover;
         ${vw('right', -8)}
@@ -74,6 +77,10 @@ export default {
     prevText: {
       type: String,
       default: '',
+    },
+    nextDisabled: {
+      type: Boolean,
+      default: false,
     },
     nextText: {
       type: String,

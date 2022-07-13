@@ -48,6 +48,12 @@ const reset = css`
     border-collapse: collapse;
     border-spacing: 0;
   }
+  button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+  }
 `;
 
 export default reset;
