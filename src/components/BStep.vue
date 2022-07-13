@@ -23,6 +23,12 @@ const Wrapper = styled('div', { open: Boolean })`
   ${({ open }) => !open && `
     ${vw('right', -560)}
   `}
+  box-sizing: border-box;
+  > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   > button {
     ${vw('width', 14)}
     ${vw('height', 25)}

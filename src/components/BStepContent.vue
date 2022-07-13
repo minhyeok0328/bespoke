@@ -16,12 +16,14 @@ import styled from 'vue3-styled-components';
 import BButton from './BButton.vue';
 
 const Wrapper = styled.div`
-  height: 83%;
+  flex: 1;
+  height: 80%;
   > div {
     :nth-child(1) {
-      ${vw('padding', [10, 60])}
       height: 100%;
+      ${vw('padding', [10, 60])}
       overflow-y: auto;
+      box-sizing: border-box;
     }
     :nth-child(2) {
       position: absolute;

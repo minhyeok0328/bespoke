@@ -4,7 +4,7 @@
     <choose-interior-type />
     <simulator-container />
     <b-step>
-      <router-view/>
+      <router-view />
     </b-step>
   </theme-provider>
 </template>
