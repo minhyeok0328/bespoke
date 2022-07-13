@@ -2,6 +2,7 @@
   <wrapper :isFridge="isFridge">
     <img :src="icon" :alt="title">
     <p>{{ title }}</p>
+    <span>{{ subtitle }}</span>
   </wrapper>
 </template>
 
