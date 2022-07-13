@@ -13,12 +13,13 @@
         :key="key"
       >
         <b-product
-          v-for="(fridge, key) in list"
-          :key="key"
+          v-for="(fridge, i) in list"
+          :key="i"
           :icon="fridge.icon"
           :title="fridge.title"
           :subtitle="fridge.subtitle"
           :is-fridge="true"
+          name="fridge"
         />
       </b-product-list>
     </b-step-content>

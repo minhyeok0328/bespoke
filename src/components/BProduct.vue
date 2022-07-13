@@ -1,20 +1,36 @@
 <template>
-  <wrapper :isFridge="isFridge">
+  <wrapper
+    :isFridge="isFridge"
+  >
     <img :src="icon" :alt="title">
     <p>{{ title }}</p>
     <span>{{ subtitle }}</span>
+    <input
+      v-show="false"
+      type="checkbox"
+      :name="name"
+      value="true"
+      ref="input"
+      @change="activeProduct"
+    >
   </wrapper>
 </template>
 
 <script>
 import { vw } from '@/styles/mixin';
+import { ref } from 'vue';
 import styled from 'vue3-styled-components';
 
-const Wrapper = styled('div', { isFridge: Boolean })`
+const Wrapper = styled('label', { isFridge: Boolean })`
+  cursor: pointer;
   ${({ theme }) => `
-    color: ${theme.colors.white}
-    ${vw('border', [3, 'solid', theme.border.active])}
-    ${vw('border-radius', 4)}
+    color: ${theme.colors.white};
+    transition: 0.5s all;
+    ${vw('outline', [3, 'solid transparent'])}
+    &.active {
+      ${vw('outline', [3, 'solid', theme.border.active])}
+      ${vw('border-radius', 3)}
+    }
   `};
   ${({ isFridge }) => isFridge && `
     ${vw('height', 188)}
@@ -49,6 +65,30 @@ export default {
       type: Boolean,
       default: false,
     },
+    name: {
+      type: String,
+      default: 'fridge',
+      required: true,
+    },
+  },
+  setup(props) {
+    const input = ref(null);
+    const activeProduct = () => {
+      Array.from(document.querySelectorAll(`input[name="${props.name}"]`)).forEach((item) => {
+        const checkbox = item;
+
+        checkbox.checked = false;
+        checkbox.closest('label').classList.remove('active');
+      });
+
+      input.value.checked = true;
+      input.value.closest('label').classList.add('active');
+    };
+
+    return {
+      input,
+      activeProduct,
+    };
   },
 };
 </script>

@@ -32,11 +32,6 @@ export default createStore({
         if (!count) return [];
 
         return state.fridge.info[key];
-      }).sort((a, b) => {
-        if (a.doorLength < b.doorLength) return 1;
-        if (a.doorLength > b.doorLength) return -1;
-
-        return 0;
       }).forEach((item) => {
         if (!items[item.doorLength]) items[item.doorLength] = [];
 
