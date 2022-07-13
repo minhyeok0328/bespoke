@@ -6,6 +6,11 @@ const routes = [
     name: 'home',
     component: () => import('@/views/HomeView.vue'),
   },
+  {
+    path: '/chooseYourColor',
+    name: 'ChooseYourColor',
+    component: () => import('@/views/ChooseColor.vue'),
+  },
 ];
 
 const router = createRouter({

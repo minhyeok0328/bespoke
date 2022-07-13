@@ -5,6 +5,7 @@
       prev-text="Interior Style"
       next-text="Color"
       :step="['01', '02']"
+      :next-callback="moveColorPage"
     />
     <b-step-content>
       <b-title>REF</b-title>
@@ -34,6 +35,7 @@ import BTitle from '@/components/BTitle.vue';
 import BProduct from '@/components/BProduct.vue';
 import BProductList from '@/components/BProductList.vue';
 import { useGetters } from '@/store/helper';
+import { useRouter } from 'vue-router';
 
 const Wrapper = styled.div`
 
@@ -49,9 +51,14 @@ export default {
     BProductList,
   },
   setup() {
+    const router = useRouter();
     const { getAvailableFridgeList } = useGetters();
+    const moveColorPage = () => {
+      router.push({ name: 'ChooseYourColor' });
+    };
     return {
       getAvailableFridgeList,
+      moveColorPage,
     };
   },
 };
