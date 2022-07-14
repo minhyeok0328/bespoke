@@ -58,7 +58,7 @@ export default {
       router.push({ name: 'ChooseColor' });
     };
     const moveInteriorPage = () => {
-      router.push({ name: 'ChooseColor' });
+      router.push({ name: 'InteriorPage' });
     };
     return {
       getAvailableFridgeList,

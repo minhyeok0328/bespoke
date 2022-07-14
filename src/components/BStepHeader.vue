@@ -1,12 +1,12 @@
 <template>
   <wrapper>
-    <button v-if="prevText" @click="prevCallback">{{ prevText }}</button>
+    <button :class="{'hide': !prevText}" @click="prevCallback">{{ prevText }}</button>
     <h1>
       {{ title }}
       <p>{{ step[0] }} / <span>{{ step[1] }}</span></p>
     </h1>
     <button
-      v-if="nextText"
+      :class="{'hide': !nextText}"
       :disabled="nextDisabled"
       @click="nextCallback"
     >{{ nextText }}</button>
@@ -55,6 +55,12 @@ const Wrapper = styled.div`
         ${vw('height', 16)}
         top: 50%;
         transform: translateY(-50%);
+      }
+      &.hide {
+        width: 0;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
       }
     }
     :nth-child(1) {
