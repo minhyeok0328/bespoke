@@ -21,8 +21,7 @@ const Wrapper = styled.div`
   > div {
     :nth-child(1) {
       height: 100%;
-      ${vw('padding', [10, 60])}
-      overflow-y: auto;
+      ${vw('padding', [10, 60, 30])}
       box-sizing: border-box;
     }
     :nth-child(2) {

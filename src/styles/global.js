@@ -52,6 +52,8 @@ export default injectGlobal`
   }
 
   .scrollbar {
+    overflow-y: auto;
+    overflow-x: hidden;
     &::-webkit-scrollbar {
       ${vw('width', 15)}
       &-thumb {

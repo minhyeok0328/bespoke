@@ -21,6 +21,12 @@ export default createStore({
 
       return data;
     },
+    getInteriors(state) {
+      return state.interiors.map((item) => ({
+        ...item,
+        active: item.number === state.interior,
+      }));
+    },
     getAvailableFridgeList(state) {
       const items = {};
 

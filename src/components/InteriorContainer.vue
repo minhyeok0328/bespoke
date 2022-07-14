@@ -1,8 +1,6 @@
 <template>
   <wrapper>
-    <div>
-      <slot name="preview"></slot>
-    </div>
+    <slot name="preview"></slot>
     <div class="scrollbar">
       <slot></slot>
     </div>
@@ -22,13 +20,9 @@ const Wrapper = styled.div`
     width: 100%;
     height: 100%;
   }
-  > div {
-    :nth-child(1) {
-      ${vw('width', 840)}
-    }
-    :nth-child(2) {
-      overflow-y: auto;
-    }
+  > .preview {
+    ${vw('width', 840)}
+    ${vw('margin-right', 33)}
   }
 `;
 

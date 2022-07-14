@@ -1,5 +1,5 @@
 <template>
-  <wrapper :active="item.active">
+  <wrapper :active="item.active" :dimmed="dimmed">
     <div>
       <img :src="item.image.default" :alt="item.name">
     </div>
@@ -7,7 +7,7 @@
       <img :src="item.shape.icon" :alt="item.shape.name">
       <span>{{ item.shape.name }}</span>
     </div>
-    <div v-if="!item.active"></div>
+    <div v-if="!item.active && dimmed"></div>
     <p>{{ item.name }}</p>
   </wrapper>
 </template>
@@ -16,17 +16,18 @@
 import { vw } from '@/styles/mixin';
 import styled from 'vue3-styled-components';
 
-const Wrapper = styled('div', { active: Boolean })`
+const Wrapper = styled('div', { active: Boolean, dimmed: Boolean })`
   position: relative;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.white};
   ${vw('width', 369)}
-  ${vw('margin-left', 33)}
+  margin: 0 auto;
   > div {
     :nth-child(1) {
       ${vw('height', 217)}
       > img {
         box-sizing: border-box;
+        width: 100%;
         ${vw('border', [2, 'solid transparent'])}
         ${({ active, theme }) => active && `
           ${vw('border', [2, 'solid', theme.colors.lightblue])}
@@ -77,6 +78,10 @@ export default {
       type: Object,
       default: () => {},
       required: true,
+    },
+    dimmed: {
+      type: Boolean,
+      default: false,
     },
   },
   components: { Wrapper },

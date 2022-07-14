@@ -6,13 +6,16 @@
     </page-title>
     <interior-container>
       <template v-slot:preview>
-        <img v-if="getInterior" :src="getInterior.image.default" :alt="getInterior.name">
+        <div class="preview">
+          <img v-if="getInterior" :src="getInterior.image.default" :alt="getInterior.name">
+        </div>
       </template>
       <interior-item
-        v-for="(interior, key) in interiorItems"
+        v-for="(item, key) in getInteriors"
         :key="key"
-        @click="activeInterior(interior.number)"
-        :item="interior"
+        @click="activeInterior(item.number)"
+        :item="item"
+        :dimmed="true"
       />
     </interior-container>
     <b-button @click="selectInterior">SELECT</b-button>
@@ -69,23 +72,15 @@ export default {
     const interiorItems = ref([]);
     const wrapper = ref(null);
     const { setInterior, setInteriors } = useMutations();
-    const { getInterior } = useGetters();
+    const { getInterior, getInteriors } = useGetters();
     const { fetchFridgeData } = useActions();
 
     bespoke.getInterior().then((data) => {
       setInteriors(data);
-      interiorItems.value = data.map((item, index) => ({
-        ...item,
-        active: !index,
-      }));
     });
 
     const activeInterior = (idx) => {
       setInterior(idx);
-      interiorItems.value = interiorItems.value.map((item) => ({
-        ...item,
-        active: item.number === idx,
-      }));
     };
 
     const selectInterior = async () => {
@@ -100,6 +95,7 @@ export default {
       activeInterior,
       selectInterior,
       getInterior,
+      getInteriors,
     };
   },
 };
