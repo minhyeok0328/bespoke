@@ -69,7 +69,6 @@ export default {
   },
   setup() {
     const bespoke = new Bespoke();
-    const interiorItems = ref([]);
     const wrapper = ref(null);
     const { setInterior, setInteriors } = useMutations();
     const { getInterior, getInteriors } = useGetters();
@@ -90,7 +89,6 @@ export default {
     };
 
     return {
-      interiorItems,
       wrapper,
       activeInterior,
       selectInterior,
