@@ -11,6 +11,7 @@
         v-for="(item, key) in getInteriors"
         :key="key"
         :item="item"
+        @click="setInterior(item.number)"
       />
     </b-step-content>
   </div>
@@ -20,7 +21,7 @@
 import BStepHeader from '@/components/BStepHeader.vue';
 import { useRouter } from 'vue-router';
 import InteriorItem from '@/components/InteriorItem.vue';
-import { useGetters } from '@/store/helper';
+import { useGetters, useMutations } from '@/store/helper';
 import BStepContent from '@/components/BStepContent.vue';
 
 export default {
@@ -28,6 +29,7 @@ export default {
   setup() {
     const router = useRouter();
     const { getInteriors } = useGetters();
+    const { setInterior } = useMutations();
     const moveProductPage = () => {
       router.push({ name: 'ProductPage' });
     };
@@ -35,6 +37,7 @@ export default {
     return {
       moveProductPage,
       getInteriors,
+      setInterior,
     };
   },
 };

@@ -15,7 +15,6 @@
         :key="key"
         @click="setInterior(item.number)"
         :item="item"
-        :dimmed="true"
       />
     </interior-container>
     <b-button @click="selectInterior">SELECT</b-button>

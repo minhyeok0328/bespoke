@@ -1,5 +1,5 @@
 <template>
-  <wrapper :active="item.active" :dimmed="dimmed">
+  <wrapper :active="item.active">
     <div>
       <img :src="item.image.default" :alt="item.name">
     </div>
@@ -7,7 +7,6 @@
       <img :src="item.shape.icon" :alt="item.shape.name">
       <span>{{ item.shape.name }}</span>
     </div>
-    <div v-if="!item.active && dimmed"></div>
     <p>{{ item.name }}</p>
   </wrapper>
 </template>
@@ -28,11 +27,13 @@ const Wrapper = styled('div', { active: Boolean, dimmed: Boolean })`
       > img {
         box-sizing: border-box;
         width: 100%;
+        opacity: 0.5;
         ${vw('border', [2, 'solid transparent'])}
         ${({ active, theme }) => active && `
           ${vw('border', [2, 'solid', theme.colors.lightblue])}
+          opacity: 1;
         `}
-        }
+      }
     }
     :nth-child(2) {
       position: absolute;
@@ -53,22 +54,13 @@ const Wrapper = styled('div', { active: Boolean, dimmed: Boolean })`
         ${vw('line-height', 24)}
       }
     }
-    :nth-child(3) {
-      background-color: rgba(0,0,0,0.5);
-      content: '';
-      position: absolute;
-      display: block;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 1;
-    }
   }
   > p {
     ${vw('margin', [10, 0, 25])}
     ${vw('font-size', 24)}
     text-align: center;
+    opacity: 0.5;
+    ${({ active }) => active && 'opacity: 1'}
   }
 `;
 
@@ -78,10 +70,6 @@ export default {
       type: Object,
       default: () => {},
       required: true,
-    },
-    dimmed: {
-      type: Boolean,
-      default: false,
     },
   },
   components: { Wrapper },
