@@ -6,16 +6,19 @@
     <div>
       <float-button
         icon="/images/floating-icon-home.png"
+        @click="reload"
       />
       <float-button
         icon="/images/floating-icon-interior-crop.png"
         :icon-width="32"
         text="INTERIOR"
+        @click="moveInteriorPage"
       />
       <float-button
         icon="/images/floating-icon-refrigerator.png"
         :icon-width="26"
         text="PRODUCT"
+        @click="moveProductPage"
       />
       <float-button
         icon="/images/product-detail.png"
@@ -28,6 +31,7 @@
 import styled from 'vue3-styled-components';
 import { useGetters } from '@/store/helper';
 import { vw } from '@/styles/mixin';
+import { useRouter } from 'vue-router';
 import FloatButton from './FloatButton.vue';
 
 const Wrapper = styled.div`
@@ -59,11 +63,18 @@ const Wrapper = styled.div`
 export default {
   components: { Wrapper, FloatButton },
   setup() {
+    const router = useRouter();
     const { getInterior, getAvailableFridgeList } = useGetters();
+    const reload = () => window.location.replace('/');
+    const moveInteriorPage = () => router.push({ name: 'InteriorPage' });
+    const moveProductPage = () => router.push({ name: 'ProductPage' });
 
     return {
       getInterior,
       getAvailableFridgeList,
+      reload,
+      moveInteriorPage,
+      moveProductPage,
     };
   },
 };
