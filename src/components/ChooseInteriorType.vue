@@ -13,7 +13,7 @@
       <interior-item
         v-for="(item, key) in getInteriors"
         :key="key"
-        @click="activeInterior(item.number)"
+        @click="setInterior(item.number)"
         :item="item"
         :dimmed="true"
       />
@@ -78,10 +78,6 @@ export default {
       setInteriors(data);
     });
 
-    const activeInterior = (idx) => {
-      setInterior(idx);
-    };
-
     const selectInterior = async () => {
       await fetchFridgeData();
 
@@ -90,7 +86,7 @@ export default {
 
     return {
       wrapper,
-      activeInterior,
+      setInterior,
       selectInterior,
       getInterior,
       getInteriors,
