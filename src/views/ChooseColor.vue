@@ -90,7 +90,7 @@ export default {
   setup() {
     const router = useRouter();
     const moveProductPage = () => {
-      router.push({ name: 'Product' });
+      router.push({ name: 'ProductPage' });
     };
     return {
       moveProductPage,

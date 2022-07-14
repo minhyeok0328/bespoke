@@ -6,6 +6,7 @@
       next-text="Color"
       :step="['01', '02']"
       :next-callback="moveColorPage"
+      :prev-callback="moveInteriorPage"
     />
     <b-step-content>
       <b-title>REF</b-title>
@@ -54,11 +55,15 @@ export default {
     const router = useRouter();
     const { getAvailableFridgeList } = useGetters();
     const moveColorPage = () => {
-      router.push({ name: 'ChooseYourColor' });
+      router.push({ name: 'ChooseColor' });
+    };
+    const moveInteriorPage = () => {
+      router.push({ name: 'ChooseColor' });
     };
     return {
       getAvailableFridgeList,
       moveColorPage,
+      moveInteriorPage,
     };
   },
 };
