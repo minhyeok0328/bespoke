@@ -55,7 +55,7 @@ export default {
     const router = useRouter();
     const { getAvailableFridgeList } = useGetters();
     const moveColorPage = () => {
-      router.push({ name: 'ChooseColor' });
+      router.push({ name: 'ChooseColorPage' });
     };
     const moveInteriorPage = () => {
       router.push({ name: 'InteriorPage' });

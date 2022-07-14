@@ -8,8 +8,8 @@ const routes = [
   },
   {
     path: '/color',
-    name: 'ChooseColor',
-    component: () => import('@/views/ChooseColor.vue'),
+    name: 'ChooseColorPage',
+    component: () => import('@/views/ChooseColorPage.vue'),
   },
   {
     path: '/interior',
